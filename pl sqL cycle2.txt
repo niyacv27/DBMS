@@ -1,0 +1,249 @@
+
+SQL> set serveroutput on;
+SQL> DECLARE
+  2     num number;
+  3     factorial number;
+  4     FUNCTION fact(x number)
+  5     RETURN number
+  6     IS
+  7         f number;
+  8         BEGIN
+  9           IF x=0 THEN
+ 10              f:=1;
+ 11           ELSE
+ 12              f:=x*fact(x-1);
+ 13           END IF;
+ 14           RETURN f;
+ 15         END;
+ 16  BEGIN
+ 17        num:=6;
+ 18        factorial:=fact(num);
+ 19        dbms_output.put_line(' Factorial ' ||num|| ' is ' ||factorial);
+ 20  END;
+ 21  
+ 22   
+ 23  /
+Factorial 6 is 720
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2     a number;
+  3     b number;
+  4     c number;
+  5     FUNCTION findmax(x IN number,y IN number)
+  6     RETURN number
+  7     IS
+  8        z number;
+  9        BEGIN 
+ 10           IF x>y THEN
+ 11             z:=x;
+ 12           ELSE
+ 13             z:=y;
+ 14           END IF;
+ 15           RETURN z;
+ 16        END;
+ 17  BEGIN
+ 18     a:=23;
+ 19     b:=45;
+ 20     c:=findmax(a,b);
+ 21     dbms_output.put_line('Maximun of(23,45):'||c);
+ 22  END;
+ 23  /
+Maximun of(23,45):45
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE 
+  2     t varchar2(30):='&text';
+  3     l number(3);
+  4     pali char(1);
+  5  BEGIN
+  6     l:=length(t);
+  7     for i in 1..l/2
+  8     loop
+  9       if substr(t,i,1)!=substr(t,l,1)then
+ 10       pali:='f';
+ 11     exit;
+ 12     else
+ 13       pali:='t';
+ 14     end if;
+ 15     l:=l-1;
+ 16     end loop;
+ 17     if pali ='t' then
+ 18       dbms_output.put_line('the given text is a palindrome');
+ 19     else
+ 20       dbms_output.put_line('the given text is not a palindrome');
+ 21     end if;
+ 22  END;
+ 23  /
+Enter value for text: malam
+old   2:    t varchar2(30):='&text';
+new   2:    t varchar2(30):='malam';
+the given text is a palindrome
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE 
+  2  -- declare variable n,s,r,len
+  3  -- and m of datatype number
+  4     n number:=1634;
+  5     s number :=0;
+  6     r number;
+  7     len number;
+  8     m number;
+  9  BEGIN
+ 10     m:=n;
+ 11     len:=length(to_char(n));
+ 12     --while loop till n>0
+ 13     while n>0
+ 14     loop
+ 15        r:=mod(n,10);
+ 16        s:=s+power(r,len);
+ 17        n:=trunc(n/10);
+ 18     end loop;
+ 19     if m=s
+ 20     then 
+ 21        dbms_output.put_line('yes');
+ 22     else
+ 23         dbms_output.put_line('no');
+ 24     end if;
+ 25  END;
+ 26  /
+yes
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE 
+  2  -- declare variable n,s,r,len
+  3  -- and m of datatype number
+  4     n number:=11;
+  5     s number :=0;
+  6     r number;
+  7     len number;
+  8     m number;
+  9  BEGIN
+ 10     m:=n;
+ 11     len:=length(to_char(n));
+ 12     --while loop till n>0
+ 13     while n>0
+ 14     loop
+ 15        r:=mod(n,10);
+ 16        s:=s+power(r,len);
+ 17        n:=trunc(n/10);
+ 18     end loop;
+ 19     if m=s
+ 20     then 
+ 21        dbms_output.put_line('yes');
+ 22     else
+ 23         dbms_output.put_line('no');
+ 24     end if;
+ 25  END;
+ 26  /
+no
+
+PL/SQL procedure successfully completed.
+
+
+SQL> DECLARE
+  2     year NUMBER :=1600;
+  3  BEGIN
+  4    --true if the year is a multiple of 4 and not multiple of 100 OR year is multiple of 400
+  5    IF MOD(year,4)=0 AND MOD(year,100)!=0 OR MOD(year,400)=0 THEN
+  6       dbms_output.put_line(year||' is a leap year');
+  7    ELSE
+  8       dbms_output.put_line(year||' is  not a leap year');
+  9    END IF;
+ 10  END;
+ 11     
+ 12  /
+1600 is a leap year
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2     year NUMBER :=1500;
+  3  BEGIN
+  4    --true if the year is a multiple of 4 and not multiple of 100 OR year is multiple of 400
+  5    IF MOD(year,4)=0 AND MOD(year,100)!=0 OR MOD(year,400)=0 THEN
+  6       dbms_output.put_line(year||' is a leap year');
+  7    ELSE
+  8       dbms_output.put_line(year||' is  not a leap year');
+  9    END IF;
+ 10  END;
+ 11     
+ 12  /
+1500 is  not a leap year
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2    --a assigning with 46
+  3    a NUMBER :=46;
+  4    --b assigning with 67
+  5    b NUMBER:=67;
+  6    --c assigning with 21
+  7    c NUMBER:=21;
+  8  BEGIN
+  9    --block start
+ 10    --If condition start
+ 11    IF a>b AND a>c THEN
+ 12      dbms_output.put_line(' Greatest number is '||a);
+ 13    ELSIF b>a AND b>c THEN
+ 14      dbms_output.put_line(' Greatest number is '||b);
+ 15    ELSE
+ 16      dbms_output.put_line(' Greatest number is '||c);
+ 17    END IF;
+ 18  END;
+ 19  /
+Greatest number is 67
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2    num INTEGER;
+  3    num_to_word VARCHAR2(100);
+  4    str VARCHAR2(100);
+  5    len INTEGER;
+  6    c INTEGER;
+  7  BEGIN
+  8    num:=135;
+  9    len:=Length(num);
+ 10    dbms_output.put_line('Entered number is:' || num);
+ 11    FOR i IN 1..len 
+ 12    LOOP
+ 13      c:=substr(num,i,1);
+ 14      SELECT Decode(c,0,'zero',1,'one',2,'two',3,'three',4,'four',5,'five',6,'six',7,'seven',8,'e
+ight',9,'nine')
+ 15      INTO str FROM dual;
+ 16      num_to_word:=num_to_word || ' ' || str;
+ 17    END LOOP;
+ 18    dbms_output.put_line('number to words:' || num_to_word );
+ 19  END;
+ 20  /
+Entered number is:135
+number to words: one three five
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2     a NUMBER:=12;
+  3     b NUMBER:=14;
+  4     c NUMBER:=20;
+  5     sumof3 NUMBER;
+  6     avgof3 NUMBER;
+  7  BEGIN
+  8     sumof3:=a+b+c;
+  9     avgof3:=sumof3/3;
+ 10     dbms_output.put_line('sum='||sumof3);
+ 11     dbms_output.put_line('Avg='||avgof3);
+ 12  END;
+ 13  
+ 14  
+ 15  /
+sum=46
+Avg=15.33333333333333333333333333333333333333
+
+PL/SQL procedure successfully completed.
+
+SQL> 
